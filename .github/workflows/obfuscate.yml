@@ -7,10 +7,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Download & obfuscate
+      - name: Pull official repo & copy
         run: |
-          curl -sL https://cdn.jsdelivr.net/gh/bia-pain-bache/BPB-Worker-Panel@main/_worker.js -o origin.js
-          npx javascript-obfuscator origin.js --output _worker.js
+          git clone --depth 1 https://github.com/bia-pain-bache/BPB-Worker-Panel.git bpbtmp
+          cp bpbtmp/_worker.js origin.js
+      - name: Obfuscate
+        run: npx javascript-obfuscator origin.js --output _worker.js
       - name: Push back
         run: |
           git config --global user.name "bot"

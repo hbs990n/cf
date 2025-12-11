@@ -10,7 +10,7 @@ jobs:
       - name: Pull official repo & copy
         run: |
           git clone --depth 1 https://github.com/bia-pain-bache/BPB-Worker-Panel.git bpbtmp
-          cp bpbtmp/_worker.js origin.js
+          cp bpbtmp/src/_worker.js origin.js        # ← 这里加了 src/
       - name: Obfuscate
         run: npx javascript-obfuscator origin.js --output _worker.js
       - name: Push back

@@ -1,7 +1,7 @@
 name: Obfuscate BPB
 on:
-  schedule: [{cron: "0 1 * * *"}]   # 每天凌晨1点自动拉最新源码并混淆
-  workflow_dispatch:               # 也可以手动触发
+  schedule: [{cron: "0 1 * * *"}]
+  workflow_dispatch:
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -9,7 +9,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Download & obfuscate
         run: |
-          curl -sL https://raw.githubusercontent.com/bia-pain-bache/BPB-Worker-Panel/main/_worker.js -o origin.js
+          curl -sL https://cdn.jsdelivr.net/gh/bia-pain-bache/BPB-Worker-Panel@main/_worker.js -o origin.js
           npx javascript-obfuscator origin.js --output _worker.js
       - name: Push back
         run: |
